@@ -1,15 +1,15 @@
 {
   "manifest_version": 2,
- 
-  "name": "Brightspace Helper",
+  "name": "Brightspace Speed Grader",
   "version": "0.1.0",
-  "description": "Brightspace Grade Helper",
- 
-  "content_scripts": [{
+  "description": "Chrome Extension to speed up Brightspace grading. It auto populates the rubric with 100% and opens the feedback window.",
+  "icons": { "16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon128.png" },
+  "browser_action": { "default_icon": "icon.png" },
+    "content_scripts": [{
     "css": ["main.css"],
     "js": ["jquery-3.3.1.min.js","content.js"],
     "matches": ["https://learn.snhu.edu/d2l/common/dialogs/nonModal/*","https://learn.snhu.edu/d2l/lms/dropbox/admin/mark/*"]
-    /*"matches": ["<all_urls>"]*/
   }]
- 
 }
