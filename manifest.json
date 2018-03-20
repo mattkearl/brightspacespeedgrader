@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Brightspace Speed Grader",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Chrome Extension to speed up Brightspace grading. It auto populates the rubric with 100% and opens the feedback window.",
   "icons": { "16": "icon16.png",
            "48": "icon48.png",
