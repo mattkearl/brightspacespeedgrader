@@ -31,8 +31,13 @@ function myFunction() {
                 iFrameDOM.find("html").css("font-size", "14px"); // change total font size
                 iFrameDOM.find("table>tbody>tr:first-of-type>th").css("cursor", "pointer"); // change cursor to pointer when over criteria option
                 iFrameDOM.find(".d2l-typography .d2l-body-compact").css("line-height", "0.6rem"); // change line height
+                iFrameDOM.find("div.dco>div.dco_c>div.dco>div.dco_c").css({
+                                            "position" : "absolute",
+                                            "margin-top" : "10px;",
+                                            "left" : "15px"
+                                            }); // change location of edit buttons
 
-                iFrameDOM.find("table").prepend( "<div id='grademe' style='border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92);'>Add Feedback</div>" );// Add the box to leave overall feedback at top
+                iFrameDOM.find("table").prepend( "<div id='grademe' style='border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92);'>Overall Feedback</div>" );// Add the box to leave overall feedback at top
 
                 iFrameDOM.find("#grademe").on("click", function(){
                     iFrameDOM.find("tr[last-row] td:last-of-type span").click(); // open the overall comments box
