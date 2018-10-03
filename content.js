@@ -22,7 +22,12 @@ if (str.substr(0,70) == "https://learn.snhu.edu/d2l/lms/dropbox/admin/mark/folde
 //Rubric Grading Sheet
 
 else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal/blank.d2l") {
-    setTimeout(function(){
+    
+    $("iframe.ddial_c_frame").on("load", function () {
+  
+
+    //setTimeout(function(){
+        
         //window.moveTo(0,0);
         //window.resizeTo(750, 1000);
         //window.focus();
@@ -38,12 +43,12 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
                                         "margin-top" : "10px;",
                                         "left" : "15px"
                                         }); // change location of edit buttons
-
+            
             
             
 
             // Add feedback button at top
-            iFrameDOM.find(".inner-wrapper").prepend( "<div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Import Feedback (Line Deliminated)</div>");
+            iFrameDOM.find(".inner-wrapper").prepend( "<div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Import into Rubric</div>");
             
             // Add the box to leave overall feedback at top
             iFrameDOM.find(".inner-wrapper").prepend( "<div id='grademe' style='border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Overall Feedback</div>" );
@@ -60,22 +65,46 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
 
                 //apply unique id to each feedback button id = feedback#
                 buttons2click.each(function (index) {
-                    
                     $(this).attr('id', 'feedback'+ index);
                 });
                 
-                //Look through each rubric item, click on the edit icon, then import the feedback item, and hit save.
+                
+                
+                
+              /*
                 for (var i = 0; i < buttons2click.length-4; i++) {
+                    iFrameDOM.find("#feedback" + i).click();
+                    $("div.d2l-dragdrop-draggable ~ div.ddial_c>iframe").on("load", function () {
+                        setTimeout(function () {
+                            $("div.d2l-dragdrop-draggable ~ div.ddial_c>iframe").contents().find("iframe").contents().find("body>p").html(lines[i]);
+                        }, 1500);
+                        $("div.ddial_o div.ddial_o2 div.ddial_i table.d2l-dialog-buttons tbody tr td button.d2l-button[primary]").click();
+                    });
+                };
+               */
+                
+                
+                //Look through each rubric item, click on the edit icon, then import the feedback item, and hit save.
+                 for (var i = 0; i < buttons2click.length-4; i++) {
+                   
                     (function (i) {
                         setTimeout(function () {
                             iFrameDOM.find("#feedback"+i).click(); // Click each link
 
+                            //$("div.d2l-dragdrop-draggable ~ div.ddial_c>iframe").on("load", function () {
+                                
                             setTimeout(function(){
                                 $("div.d2l-dragdrop-draggable ~ div.ddial_c>iframe").contents().find("iframe").contents().find("body>p").html(lines[i]);
+                                
                                 $("div.ddial_o div.ddial_o2 div.ddial_i table.d2l-dialog-buttons tbody tr td button.d2l-button[primary]").click();
-                                }, 1000); 
+                                
+                            }, 1500); 
+                            //});
+                                                                                    
+                            
                         }, 2000*i);
                     })(i);
+                
                 };
                 
 
@@ -99,7 +128,8 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
 
         });
 
-    }, 2000);
+    //}, 1500);
+    });
 }
 
     
