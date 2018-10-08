@@ -3,8 +3,7 @@ function myFunction() {
 
 var str = window.location.href;
 
-//Main Grading Page 
-
+//Assignment Grading Page 
 if (str.substr(0,70) == "https://learn.snhu.edu/d2l/lms/dropbox/admin/mark/folder_user_mark.d2l") {
     $(function(){
             //$('#z_bq').css("position", "relative");
@@ -19,6 +18,17 @@ if (str.substr(0,70) == "https://learn.snhu.edu/d2l/lms/dropbox/admin/mark/folde
 
 }
 
+//Overall Grading Page not allowing javascript to run on this page. Weird.
+ else if (str.substr(0,22) == "https://learn.snhu.edu") {
+     $(function(){
+        alert("TestNew");
+        });
+
+} 
+
+    
+    
+    
 //Rubric Grading Sheet
 
 else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal/blank.d2l") {
