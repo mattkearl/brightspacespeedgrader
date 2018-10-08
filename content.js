@@ -17,17 +17,7 @@ if (str.substr(0,70) == "https://learn.snhu.edu/d2l/lms/dropbox/admin/mark/folde
         });
 
 }
-
-//Overall Grading Page not allowing javascript to run on this page. Weird.
- else if (str.substr(0,22) == "https://learn.snhu.edu") {
-     $(function(){
-        alert("TestNew");
-        });
-
-} 
-
-    
-    
+        
     
 //Rubric Grading Sheet
 
