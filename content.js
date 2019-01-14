@@ -24,13 +24,6 @@ if (str.substr(0,70) == "https://learn.snhu.edu/d2l/lms/dropbox/admin/mark/folde
 else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal/blank.d2l") {
     
     $("iframe.ddial_c_frame").on("load", function () {
-  
-
-    //setTimeout(function(){
-        
-        //window.moveTo(0,0);
-        //window.resizeTo(750, 1000);
-        //window.focus();
 
         $(function(){
             var iFrameDOM = $("iframe").contents();
@@ -68,21 +61,7 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
                     $(this).attr('id', 'feedback'+ index);
                 });
                 
-                
-                
-                
-              /*
-                for (var i = 0; i < buttons2click.length-4; i++) {
-                    iFrameDOM.find("#feedback" + i).click();
-                    $("div.d2l-dragdrop-draggable ~ div.ddial_c>iframe").on("load", function () {
-                        setTimeout(function () {
-                            $("div.d2l-dragdrop-draggable ~ div.ddial_c>iframe").contents().find("iframe").contents().find("body>p").html(lines[i]);
-                        }, 1500);
-                        $("div.ddial_o div.ddial_o2 div.ddial_i table.d2l-dialog-buttons tbody tr td button.d2l-button[primary]").click();
-                    });
-                };
-               */
-                
+
                 
                 //Look through each rubric item, click on the edit icon, then import the feedback item, and hit save.
                  for (var i = 0; i < buttons2click.length-4; i++) {
@@ -122,13 +101,8 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
                 });
             });
 
-
-           //iFrameDOM.find("tr[last-row] td:last-of-type span").click(); // open the comments box
-
-
         });
 
-    //}, 1500);
     });
 }
 
@@ -138,6 +112,7 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
     
 // Discussion Board Assessment
  else if (str.substr(0,69) == "https://learn.snhu.edu/d2l/lms/grades/admin/enter/grade_item_edit.d2l") {
+
      $(function(){
           $('.d2l-table .d2l-table-cell-last a').click(function () { 
               setTimeout(function(){
@@ -146,6 +121,57 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
                                         }); // set height and width of dialog bog that pops up.
 
                     var iFrameDOM = $("iframe").contents();
+
+                    // Add feedback button at top
+                    iFrameDOM.find("section.m-rubric analytic-rubric h2").after( "<div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Import into Rubric</div><div style='clear:both';");
+
+                    // Add feedback field at top
+                    iFrameDOM.find("section.m-rubric analytic-rubric h2").after("<textarea id='feedbackfield' style='width: 400px; height:100px; box-sizing: border-box;  border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; background-color:rgb(249,250,251);color:rgb(86,90,92); float:left;'></textarea>");
+
+                    // Click on the Submit Feedback and it parses the text and submits it in each feedback form
+                    iFrameDOM.find("#feedbacksubmit").on("click", function(){
+                        var lines = iFrameDOM.find("#feedbackfield").val().split('\n'); //break out textarea to array of feedback items
+                        var sections = iFrameDOM.find(".m-criterion--container"); //access the iframe for use
+
+
+
+                        //apply unique id to each feedback button id = feedback#
+                        sections.each(function (index) {
+                            $(this).find(".m-criterion__feedbackLink").attr('id', 'feedback'+ index);
+                            iFrameDOM.find("#feedback"+index).click();
+                            $(this).find(".m-feedback__editable").attr('id', 'feedbackbox'+ index);
+
+                            setTimeout(function () {
+                                if (index==0) {
+                                    alert("Please be patient, this one take a bit longer.");
+                                    iFrameDOM.find("#feedbackbox"+index).click(); // Click each link
+
+                                }
+                                else {
+                                    iFrameDOM.find("#feedbackbox"+index).click(); // Click each link
+                                }
+
+
+                                setTimeout(function(){
+                                    iFrameDOM.find("#feedbackbox"+index).find("p").text(lines[index]);
+
+                                }, 2000);
+
+                                iFrameDOM.find("#feedbackbox" + index + " + .m-feedback__linkContainer div").click();
+
+                            }, 3000*index);
+                         });
+
+                    });
+
+
+
+
+
+
+                    iFrameDOM.find(".m-rubricApp .m-rubric__name").css("font-size", "14px"); // change html font size
+
+
                     iFrameDOM.find("html").css("font-size", "14px"); // change html font size
                     iFrameDOM.find(".m-rubricApp .m-criterion__description").css({
                                                                                 "font-size" : "8px",
@@ -178,7 +204,7 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
 
 
 
-              }, 2500);
+              }, 3000);
            });
 
 
@@ -186,7 +212,6 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
 
 
         });
-
 
 
 
