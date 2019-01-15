@@ -19,10 +19,9 @@ if (str.substr(0,70) == "https://learn.snhu.edu/d2l/lms/dropbox/admin/mark/folde
 }
         
     
-//Rubric Grading Sheet
+//Normal Assignment Rubric Grading Sheet
 
 else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal/blank.d2l") {
-    
     $("iframe.ddial_c_frame").on("load", function () {
 
         $(function(){
@@ -106,12 +105,97 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
     });
 }
 
+
+
+// Discussion Rubric Auto Grader
+else if (str.substr(0,30) == "https://learn.snhu.edu/d2l/le/") {
+
+      $(function(){
+
+
+
+        setTimeout(function(){
+        var iFrameDOM = $("iframe").contents();
+
+         iFrameDOM.find(".m-criteriaGroup__header>div:nth-child(2)").on("click", function(){
+            iFrameDOM.find(".m-criterion__levels label:nth-child(1) .m-criterion__content").click(); // click 100% on all categories
+        });
+        iFrameDOM.find(".m-criteriaGroup__header>div:nth-child(3)").on("click", function(){
+            iFrameDOM.find(".m-criterion__levels label:nth-child(2) .m-criterion__content").click(); // click 100% on all categories
+        });
+        iFrameDOM.find(".m-criteriaGroup__header>div:nth-child(4)").on("click", function(){
+            iFrameDOM.find(".m-criterion__levels label:nth-child(3) .m-criterion__content").click(); // click 100% on all categories
+        });
+        iFrameDOM.find(".m-criteriaGroup__header>div:nth-child(5)").on("click", function(){
+            iFrameDOM.find(".m-criterion__levels label:nth-child(4) .m-criterion__content").click(); // click 100% on all categories
+        });
+
+
+
+
+
+
+
+        //iFrameDOM.find("html").css("font-size", "14px"); // change total font size
+
+
+        // Add feedback button at top
+        iFrameDOM.find(".d2l-evaluation-header-image").before( "<textarea id='feedbackfield' style='width:230px; height:90px; box-sizing: border-box;  border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; background-color:rgb(249,250,251);color:rgb(86,90,92); float:left;' placeholder='Add feedback line by line for each rubric line'></textarea><div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin: 1px 0 0 0; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:120px;float:left;'>Import into Rubric</div>");
+
+        // Click on the Submit Feedback and it parses the text and submits it in each feedback form
+        iFrameDOM.find("#feedbacksubmit").on("click", function(){
+
+        //iFrameDOM.find(".m-criteriaGroup__header>div").on("click", function(){
+
+            var lines = iFrameDOM.find("#feedbackfield").val().split('\n'); //break out textarea to array of feedback items
+            var sections = iFrameDOM.find(".m-criterion--container"); //access the iframe for use
+
+
+
+            //apply unique id to each feedback button id = feedback#
+            sections.each(function (index) {
+                //$(this).find(".m-criterion__feedbackLink").attr('id', 'feedback'+ index);
+                //iFrameDOM.find("#feedback"+index).click();
+                //$(this).find(".m-feedback__editable").attr('id', 'feedbackbox'+ index);
+
+
+
+                $(this).attr('id', 'feedback'+ index); // tag each row of the rubric with an identifier
+
+                setTimeout(function () {
+
+                    iFrameDOM.find("#feedback" + index + " .m-criterion__feedbackLink").click();
+                        setTimeout(function () {
+                            iFrameDOM.find("#feedback" + index + " .m-feedback__editable div.m-htmlBlock p").text(lines[index]);
+                        }, 300);
+                }, 500*index);
+             });
+
+
+
+
+
+         });
+    
+
+
+    }, 1000);
+    });
     
     
-    
+}
+
+
+
+
     
 // Discussion Board Assessment
  else if (str.substr(0,69) == "https://learn.snhu.edu/d2l/lms/grades/admin/enter/grade_item_edit.d2l") {
+
+
+
+
+    /*
 
      $(function(){
           $('.d2l-table .d2l-table-cell-last a').click(function () { 
@@ -213,7 +297,7 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
 
         });
 
-
+    */
 
 
 } //last else if
