@@ -40,15 +40,16 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
             
 
             // Add feedback button at top
-            iFrameDOM.find(".inner-wrapper").prepend( "<div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Import into Rubric</div>");
+
+            iFrameDOM.find(".d2l-grid-container").prepend( "<div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Import into Rubric</div>");
             
             // Add the box to leave overall feedback at top
-            iFrameDOM.find(".inner-wrapper").prepend( "<div id='grademe' style='border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Overall Feedback</div>" );
+            iFrameDOM.find(".d2l-grid-container").prepend( "<div id='grademe' style='border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Overall Feedback</div>" );
             
             // Add feedback field at top
-            iFrameDOM.find(".inner-wrapper").prepend( "<textarea id='feedbackfield' style='width: 400px; height:100px; box-sizing: border-box;  border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; background-color:rgb(249,250,251);color:rgb(86,90,92); float:left;'></textarea>");
+            iFrameDOM.find(".d2l-grid-container").prepend( "<textarea id='feedbackfield' style='width: 400px; height:100px; box-sizing: border-box;  border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; background-color:rgb(249,250,251);color:rgb(86,90,92); float:left;'></textarea>");
             
-            
+            //.inner-wrapper   this was the old class that it used to identify where to put the buttons.
             
             // Click on the Submit Feedback and it parses the text and submits it in each feedback form
             iFrameDOM.find("#feedbacksubmit").on("click", function(){
@@ -76,11 +77,11 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
                                 
                                 $("div.ddial_o div.ddial_o2 div.ddial_i table.d2l-dialog-buttons tbody tr td button.d2l-button[primary]").click();
                                 
-                            }, 1500); 
+                            }, 2000);
                             //});
                                                                                     
                             
-                        }, 2000*i);
+                        }, 2500*i);
                     })(i);
                 
                 };
