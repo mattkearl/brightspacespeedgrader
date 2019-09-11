@@ -114,7 +114,7 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
             
             
             
-            
+            // Click the top column and select all items under it.
             iFrameDOM.find("table>tbody>tr:first-of-type>th").each(function(index) { 
                 $(this).on("click", function(){
 
