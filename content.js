@@ -29,7 +29,7 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
             var iFrameDOM = $("iframe").contents(); //Load iFrame contents
 
             // Add feedback button at top
-            iFrameDOM.find(".dco_c").prepend( "<textarea id='feedbackfield' style='width: 400px; height:100px; box-sizing: border-box;  border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; background-color:rgb(249,250,251);color:rgb(86,90,92); float:left;'></textarea><div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Import into Rubric</div>");
+            iFrameDOM.find(".dco_c").prepend( "<textarea id='feedbackfield' style='width: 400px; height:100px; box-sizing: border-box;  border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; background-color:rgb(249,250,251);color:rgb(86,90,92); float:left;'></textarea><div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Import into Rubric</div><h6 style='color:#5d6061; margin-left:410px; font-size:10px;'>Enjoy Speedgrader? <a target='blank' style='font-weight:bold;color:#006fbf;' href='https://paypal.me/mkearl'>Donate $5</a></h6>");
             //Style Font size and add form fields 
             iFrameDOM.find("html").css("font-size", "14px"); // change total font size
             
@@ -100,7 +100,7 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
         var iFrameDOM = $("iframe").contents(); //Load iFrame contents
 
         // Add feedback button at top
-        iFrameDOM.find(".dco_c .dco .first-rubric ").prepend( "<textarea id='feedbackfield' style='width: 400px; height:100px; box-sizing: border-box;  border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; background-color:rgb(249,250,251);color:rgb(86,90,92); float:left;'></textarea><div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Import into Rubric</div><div style='clear:both;'></div>");
+        iFrameDOM.find(".dco_c .dco .first-rubric ").prepend( "<textarea id='feedbackfield' style='width: 400px; height:100px; box-sizing: border-box;  border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; background-color:rgb(249,250,251);color:rgb(86,90,92); float:left;'></textarea><div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Import into Rubric</div><h6 style='color:#5d6061; margin-left:410px; font-size:10px;'>Enjoy Speedgrader? <a target='blank' style='font-weight:bold;color:#006fbf;' href='https://paypal.me/mkearl'>Donate $5</a></h6><div style='clear:both;'></div>");
 
         iFrameDOM.find("html").css("font-size", "14px"); // change total font size
 
