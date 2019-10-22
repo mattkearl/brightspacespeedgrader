@@ -67,6 +67,7 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
 
 
 
+
         //Imports Text to Feedback Forms
         // Click on the Submit Feedback and it parses the text and submits it in each feedback form
         iFrameDOM.find("#feedbacksubmit").on("click", function(){
@@ -91,8 +92,6 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
             */
 
 
-
-
             sections.each(function (index) {
                 setTimeout(function () {
                     var i = index + 1;
@@ -104,13 +103,9 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
                         var fb2 = dummyInput.shadowRoot;
                         var textarea = $(fb2).find("textarea").val(lines[index]);
                         dummyInput.dispatchEvent(new Event('input'));
-                    }, 100);
-                }, 600*index);
+                    }, 500);
+                }, 1300*index);
             });
-
-
-
-
 
 
         });
@@ -185,8 +180,8 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
                         var fb2 = dummyInput.shadowRoot;
                         var textarea = $(fb2).find("textarea").val(lines[index]);
                         dummyInput.dispatchEvent(new Event('input'));
-                    }, 100);
-                }, 600*index);
+                    }, 400);
+                }, 1000*index);
             });
         });
 
