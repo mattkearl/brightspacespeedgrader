@@ -26,13 +26,13 @@ if (str.substr(0,70) == "https://learn.snhu.edu/d2l/lms/dropbox/admin/mark/folde
 
     
 //Assignment Rubric Page
-else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal/blank.d2l") {
+else if (str.substr(0,60) == "") {
     $(function(){
     setTimeout(function(){
         var iFrameDOM = $("iframe").contents(); //Load iFrame contents
 
         // Add feedback button at top
-        iFrameDOM.find(".dco_c").prepend( "<textarea id='feedbackfield' style='width: 400px; height:100px; box-sizing: border-box;  border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; background-color:rgb(249,250,251);color:rgb(86,90,92); float:left;'></textarea><div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Import into Rubric</div><h6 style='color:#5d6061; margin-left:410px; font-size:10px;'>Enjoy Speedgrader? <a target='blank' style='font-weight:bold;color:#006fbf;' href='https://paypal.me/mkearl'>Donate $5</a></h6>");
+        iFrameDOM.find(".dco_c").prepend( "<textarea id='feedbackfield' style='width: 400px; height:100px; box-sizing: border-box;  border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; background-color:rgb(249,250,251);color:rgb(86,90,92); float:left;'></textarea><div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Import into Rubric</div><h6 style='color:#5d6061; margin-left:410px; font-size:10px;'>Enjoy Speedgrader? <a target='blank' style='font-weight:bold;color:#006fbf;' href='https://paypal.me/mkearl'>Donate $5</a>. Not supported by SNHU</h6>");
         //Style Font size and add form fields
         iFrameDOM.find("html").css("font-size", "14px"); // change total font size
 
@@ -65,6 +65,11 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
         });
 
 
+        /*trying to speed this up
+        $(table).find("d2l-th:nth-of-type(1)").on("click", function(){
+            $(table).find(".col2").click();
+        });*/
+
 
 
 
@@ -74,23 +79,6 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
 
             var lines = iFrameDOM.find("#feedbackfield").val().split('\n'); //break out textarea to array of feedback items
             var sections = $(table).find(".col1"); // Find each row in col1
-
-
-            /* Old working version.
-            sections.each(function (index) {
-                setTimeout(function () {
-                    var i = index + 1;
-                    $(table).find(".row" + i + " d2l-button-subtle").click();
-
-                    setTimeout(function () {
-                        var fb1 = $(table).find("d2l-tbody #feedback" + index + " d2l-rubric-feedback")[0].shadowRoot;
-                        var fb2 = $(fb1).find("d2l-input-textarea")[0].shadowRoot;
-                        var textarea = $(fb2).find("textarea").val(lines[index]);
-                    }, 300);
-                }, 500*index);
-            });
-            */
-
 
             sections.each(function (index) {
                 setTimeout(function () {
@@ -103,9 +91,49 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
                         var fb2 = dummyInput.shadowRoot;
                         var textarea = $(fb2).find("textarea").val(lines[index]);
                         dummyInput.dispatchEvent(new Event('input'));
+                    }, 300);
+
+                }, 1500*index);
+            });
+
+            /*
+            sections.each(function (index) {
+                setTimeout(function () {
+                    var i = index + 1;
+                    $(table).find(".row" + i + " d2l-button-subtle").click();
+
+                    if ($(table).find("d2l-tbody #feedback" + index).length) {
+
+                        setTimeout(function () {
+                            var fb1 = $(table).find("d2l-tbody #feedback" + index + " d2l-rubric-feedback")[0].shadowRoot;
+                            var dummyInput = $(fb1).find("d2l-input-textarea")[0];
+                            var fb2 = dummyInput.shadowRoot;
+                            var textarea = $(fb2).find("textarea").val(lines[index]);
+                            dummyInput.dispatchEvent(new Event('input'));
+                        }, 500);
+
+                    }
+                    else {
+                        alert ("didn't work");
+                    }
+
+
+                    setTimeout(function () {
+                        var fb1 = $(table).find("d2l-tbody #feedback" + index + " d2l-rubric-feedback")[0].shadowRoot;
+                        var dummyInput = $(fb1).find("d2l-input-textarea")[0];
+                        var fb2 = dummyInput.shadowRoot;
+                        var textarea = $(fb2).find("textarea").val(lines[index]);
+                        dummyInput.dispatchEvent(new Event('input'));
+
+
+
+
                     }, 500);
                 }, 1300*index);
             });
+            */
+
+
 
 
         });
@@ -123,13 +151,13 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
 
 
 //Discussion Rubric
- else if (str.substr(0,30) == "https://learn.snhu.edu/d2l/le/") {
+ else if (str.substr(0,30) == "") {
     $(function(){
     setTimeout(function(){
         var iFrameDOM = $("iframe").contents(); //Load iFrame contents
 
         // Add feedback button at top
-        iFrameDOM.find(".dco_c .dco .first-rubric ").prepend( "<textarea id='feedbackfield' style='width: 400px; height:100px; box-sizing: border-box;  border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; background-color:rgb(249,250,251);color:rgb(86,90,92); float:left;'></textarea><div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Import into Rubric</div><h6 style='color:#5d6061; margin-left:410px; font-size:10px;'>Enjoy Speedgrader? <a target='blank' style='font-weight:bold;color:#006fbf;' href='https://paypal.me/mkearl'>Donate $5</a></h6><div style='clear:both;'></div>");
+        iFrameDOM.find(".dco_c .dco .first-rubric ").prepend( "<textarea id='feedbackfield' style='width: 400px; height:100px; box-sizing: border-box;  border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; background-color:rgb(249,250,251);color:rgb(86,90,92); float:left;'></textarea><div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Import into Rubric</div><h6 style='color:#5d6061; margin-left:410px; font-size:10px;'>Enjoy Speedgrader? <a target='blank' style='font-weight:bold;color:#006fbf;' href='https://paypal.me/mkearl'>Donate $5</a>. Not supported by SNHU<</h6><div style='clear:both;'></div>");
 
         iFrameDOM.find("html").css("font-size", "14px"); // change total font size
 
