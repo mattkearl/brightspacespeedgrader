@@ -14,7 +14,8 @@ if (str.substr(0,70) == "https://learn.snhu.edu/d2l/lms/dropbox/admin/mark/folde
             $('.d2l-typography').css("font-size", ".75rem");
             //This function will wait till TINYMCE is loaded, then go grab the name and display it in the form box if it is emtpy.
             setTimeout(function () {
-                var name = $("#z_h div div div label span.ds_b").text().split(" ")[0] + ", <br>";
+                //var name = $("#z_h div div div label span.ds_b").text().split(" ")[0] + ", <br>";
+                var name = $(".dco_c .d_tl label strong").text().split(" ")[0] + ", <br>";
                 var iFrameDOM = $("#feedback iframe").contents();
                 if (iFrameDOM.find("body").text().length <= 0) {
                     iFrameDOM.find("p").prepend(name);
@@ -26,7 +27,7 @@ if (str.substr(0,70) == "https://learn.snhu.edu/d2l/lms/dropbox/admin/mark/folde
 
     
 //Assignment Rubric Page
-else if (str.substr(0,60) == "") {
+else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal/blank.d2l") {
     $(function(){
     setTimeout(function(){
         var iFrameDOM = $("iframe").contents(); //Load iFrame contents
@@ -151,7 +152,7 @@ else if (str.substr(0,60) == "") {
 
 
 //Discussion Rubric
- else if (str.substr(0,30) == "") {
+ else if (str.substr(0,30) == "https://learn.snhu.edu/d2l/le/") {
     $(function(){
     setTimeout(function(){
         var iFrameDOM = $("iframe").contents(); //Load iFrame contents
