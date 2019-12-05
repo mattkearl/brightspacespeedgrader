@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Brightspace Speed Grader",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Chrome Extension to speed up Brightspace grading.",
   "icons": { "16": "icon16.png",
            "48": "icon48.png",
@@ -11,6 +11,7 @@
     "css": ["main.css"],
     "js": ["jquery-3.3.1.min.js","content.js"],
     "matches": ["https://learn.snhu.edu/d2l/common/dialogs/nonModal/*","https://learn.snhu.edu/d2l/lms/dropbox/admin/mark/*","https://learn.snhu.edu/d2l/lms/grades/admin/enter/grade_item_edit.d2l*","https://learn.snhu.edu/d2l/le/*"]
-
+ 
+    
     }]
 }
