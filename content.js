@@ -91,6 +91,9 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
                     if (!$(table).find("d2l-tbody #feedback" + index).length) {
                         missing.push(index);
                     }
+                    else {
+                        $(".d2l-button").css("background-color","green");
+                    }
                     index++;
                 }
                 return missing;
@@ -110,14 +113,27 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
                             var fb2 = dummyInput.shadowRoot;
                             var textarea = $(fb2).find("textarea").val(lines[index]);
                             dummyInput.dispatchEvent(new Event('input'));
-                            if (iteration == sectionarray.length) {setFeedback(checksections(sections));} // check to see if there are missed sections
+                            if (iteration == sectionarray.length) {
+                                setFeedback(checksections(sections));
+                            } // check to see if there are missed sections
+
+
                         }, 1);
                     iteration++;
                     }, 400*timer);
                     timer++;
                 }
             }
-            setFeedback(checksections(sections)); // run the function to set the numbers.
+
+
+            var preload = [];
+            var index = 0;
+            while (index < sections.length) {
+                preload.push(index);
+                index++;
+            }
+            setFeedback(preload); // run the function to set the numbers.
+
         });
     }, 2000); //wait 2 seconds until iframe loads
     });
@@ -187,10 +203,14 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
                     if (!$(table).find("d2l-tbody #feedback" + index).length) {
                         missing.push(index);
                     }
+                    else {
+                        $(".d2l-button").css("background-color","green");
+                    }
                     index++;
                 }
                 return missing;
             }
+
 
 
             function setFeedback(sectionarray) {
@@ -213,7 +233,13 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
                     timer++;
                 }
             }
-            setFeedback(checksections(sections)); // run the function to set the numbers.
+            var preload = [];
+            var index = 0;
+            while (index < sections.length) {
+                preload.push(index);
+                index++;
+            }
+            setFeedback(preload); // run the function to set the numbers.
 
 
 
