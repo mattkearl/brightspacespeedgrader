@@ -1,7 +1,7 @@
 window.onload = myFunction;
 
 var loadtime = localStorage.getItem("loadtime");
-var rubrictime = localStorage.getItem("loadtime");
+var rubrictime = localStorage.getItem("rubrictime");
 
 if (loadtime) {}
 else {
@@ -132,7 +132,7 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
 
                         }, 1);
                     iteration++;
-                    }, rubrictime*timer);
+                    }, rubrictime*timer); //how fast it runs through items on rubric
                     timer++;
                 }
             }
