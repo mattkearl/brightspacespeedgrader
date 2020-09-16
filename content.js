@@ -5,7 +5,7 @@ var rubrictime = localStorage.getItem("rubrictime");
 
 if (loadtime) {}
 else {
-    loadtime = 6000;
+    loadtime = 4000;
     localStorage.setItem("loadtime", loadtime);
 }
 
@@ -27,11 +27,20 @@ if (str.substr(0,70) == "https://learn.snhu.edu/d2l/lms/dropbox/admin/mark/folde
             //This function will wait till TINYMCE is loaded, then go grab the name and display it in the form box if it is emtpy.
             setTimeout(function () {
                 //var name = $("#z_h div div div label span.ds_b").text().split(" ")[0] + ", <br>";
-                var name = $(".dco_c .d_tl label strong").text().split(" ")[0] + ", <br>";
+                var name = $(".dco_c .d_tl label strong").text().split(" ")[0];
                 var iFrameDOM = $("#feedback iframe").contents();
-                if (iFrameDOM.find("body").text().length <= 0) {
-                    iFrameDOM.find("p").prepend(name);
-                }
+                //if (iFrameDOM.find("body").text().length <= 0) {
+                //    iFrameDOM.find("p").prepend(name);
+                //}
+                //Look to see if their name exists in it already. If not, then add it to the top.
+                if (iFrameDOM.find("body").text().indexOf(name) >= 0) {
+                         //doesn't add the name if it is already there.
+                    }
+                       
+                else {                    
+                        //adds the name to the top before your comments.
+                        iFrameDOM.find("p").prepend(name + ", <br>");
+                       }
             }, 300);
         });
 
