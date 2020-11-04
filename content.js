@@ -1,4 +1,3 @@
-
 window.onload = myFunction;
 
 var loadtime = localStorage.getItem("loadtime");
@@ -19,7 +18,10 @@ else {
 function myFunction() {
 var str = window.location.href;
 
-    
+
+
+
+
 if (str.substr(0,70) == "https://learn.snhu.edu/d2l/lms/dropbox/admin/mark/folder_user_mark.d2l") {
     $(function(){
             $('#z_z').css("display", "none");
@@ -37,17 +39,17 @@ if (str.substr(0,70) == "https://learn.snhu.edu/d2l/lms/dropbox/admin/mark/folde
                 if (iFrameDOM.find("body").text().indexOf(name) >= 0) {
                          //doesn't add the name if it is already there.
                     }
-                       
-                else {                    
+
+                else {
                         //adds the name to the top before your comments.
-                        iFrameDOM.find("p").prepend(name + ", <br>");
+                        iFrameDOM.find("p:first-of-type").prepend(name + ", <br>");
                        }
             }, 300);
         });
 
 }
 
-    
+
 //Assignment Rubric Page
 else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal/blank.d2l") {
     $(function(){
@@ -159,6 +161,42 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
         });
     }, loadtime); //wait 2 seconds until iframe loads
     });
+} // End if statement
+
+
+
+
+//Add the name to an individual discussion page
+    else if (str.substr(36,21) == "/discussions/threads/") {
+
+    $(function(){
+
+        //This function will wait till TINYMCE is loaded, then go grab the name and display it in the form box if it is emtpy.
+
+        $("#replyThreadTopButton").on("click", function(){
+
+            setTimeout(function () {
+                // Get the name from the student and select the first name
+                var name = $("div.vui-emphasis").text().split(' posted')[0].split(" ")[0];
+
+                // Look in the frame
+                var iFrameDOM = $("iframe").contents();
+
+                //Look to see if their name exists in it already. If not, then add it to the top.
+                if (iFrameDOM.find("body").text().indexOf(name) >= 0) {
+                         //doesn't add the name if it is already there.
+                    }
+
+                else {
+                        //adds the name to the top before your comments.
+                        iFrameDOM.find("p:first-of-type").prepend(name + ", <br>");
+                       }
+            }, 1000);
+
+        });
+
+    });
+
 } // End if statement
 
 
