@@ -1,3 +1,4 @@
+
 window.onload = myFunction;
 
 var loadtime = localStorage.getItem("loadtime");
