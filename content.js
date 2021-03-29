@@ -5,13 +5,13 @@ var rubrictime = localStorage.getItem("rubrictime");
 
 if (loadtime) {}
 else {
-    loadtime = 4000;
+    loadtime = 2500;
     localStorage.setItem("loadtime", loadtime);
 }
 
 if (rubrictime) {}
 else {
-    rubrictime = 1500;
+    rubrictime = 200;
     localStorage.setItem("rubrictime", rubrictime);
 }
 
@@ -215,7 +215,7 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
         var iFrameDOM = $("iframe").contents(); //Load iFrame contents
 
         // Add feedback button at top
-        iFrameDOM.find(".dco_c .dco .first-rubric ").prepend( "<textarea id='feedbackfield' style='width: 400px; height:100px; box-sizing: border-box;  border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; background-color:rgb(249,250,251);color:rgb(86,90,92); float:left;'></textarea><div id='feedbacksubmit' style='display:block; border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; font-weight:bold;text-align:center;cursor:pointer; background-color:rgb(249,250,251);color:rgb(86,90,92); width:150px; margin-left: 410px;'>Import into Rubric</div><h6 style='color:#5d6061; margin-left:410px; font-size:10px;'>If you feel I've earned a 'thank you' for the Speed Grader,<br><a target='blank' style='font-weight:bold;color:#006fbf;' href='https://paypal.me/mkearl'>Please Donate $5</a>. Not supported by SNHU</h6><div style='clear:both;'></div>");
+        iFrameDOM.find(".dco_c .dco .first-rubric ").prepend( "<textarea id='feedbackfield' style='width: 310px; height: 80px; box-sizing: border-box;  border:#d3d9e3 1px solid; padding:5px; margin-bottom:5px; background-color:rgb(249,250,251);color:rgb(86,90,92); position:fixed; z-index:10000; top:10px; margin-left:325px;'></textarea><div id='feedbacksubmit' style='display: block; border: #d3d9e3 1px solid; padding: 5px 10px; font-weight: bold; text-align: center; cursor: pointer; background-color: rgb(249,250,251); color: rgb(86,90,92); margin-left: 250px; position: fixed; top: 55px; z-index: 10000;'>Import</div><div id='grademe' style='display: block; border: #d3d9e3 1px solid; padding: 5px 10px; font-weight: bold; text-align: center; cursor: pointer; background-color: rgb(249,250,251); color: rgb(86,90,92); margin-left: 250px; position: fixed; top: 10px; z-index: 10000;'>Grade</div><!--<h6 style='color:#5d6061; margin-left:410px; font-size:10px;'>If you feel I've earned a 'thank you' for the Speed Grader,<br><a target='blank' style='font-weight:bold;color:#006fbf;' href='https://paypal.me/mkearl'>Please Donate $5</a>. Not supported by SNHU</h6>--><div style='clear:both;'></div>");
 
         iFrameDOM.find("html").css("font-size", "14px"); // change total font size
 
@@ -245,6 +245,15 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
             });
         });
 
+        //Grade everything 100% if clicking the grade button
+        iFrameDOM.find("#grademe").on("click", function(){
+
+                $(table).find(".col2").click();
+
+        });
+
+
+
         //Imports Text to Feedback Forms
         // Click on the Submit Feedback and it parses the text and submits it in each feedback form
         iFrameDOM.find("#feedbacksubmit").on("click", function(){
@@ -270,6 +279,7 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
                 return missing;
             }
 
+
             function setFeedback(sectionarray) {
                 var timer = 0;
                 var iteration = 0;
@@ -279,11 +289,18 @@ else if (str.substr(0,60) == "https://learn.snhu.edu/d2l/common/dialogs/nonModal
                         $(table).find(".row" + i + " d2l-button-subtle").click();
                         setTimeout(function () {
                             var fb1 = $(table).find("d2l-tbody #feedback" + index + " d2l-rubric-feedback")[0].shadowRoot;
-                            var dummyInput = $(fb1).find("d2l-input-textarea")[0];
-                            var fb2 = dummyInput.shadowRoot;
-                            var textarea = $(fb2).find("textarea").val(lines[index]);
-                            dummyInput.dispatchEvent(new Event('input'));
-                            if (iteration == sectionarray.length) {setFeedback(checksections(sections));} // check to see if there are missed sections
+                            var feedbackBox = $(fb1).find("d2l-input-textarea")[0]; //Identify Feedback Box
+                            var fb2 = feedbackBox.shadowRoot;
+
+                            var TextAreaBox = $(fb2).find("textarea").val(lines[index]); //Identify the textarea box
+                            var dummyinput = $(fb2).find("textarea")[0]; //Identify text Box
+
+
+                            dummyinput.dispatchEvent(new Event('input')); // mimic text entered in the textbox
+                            feedbackBox.dispatchEvent(new Event('input')); // mimic text entered in the backback box. We need both of these.
+
+                            if (iteration == sectionarray.length) { setFeedback(checksections(sections));} // check to see if there are missed sections
+
                         }, 1);
                     iteration++;
                     }, rubrictime*timer);
